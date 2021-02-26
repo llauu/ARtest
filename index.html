@@ -38,15 +38,15 @@
         embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
         <a-assets>
-            <video src="https://github.com/llauu/ARtest/tree/master/multimedia/videoTest.mp4"
+            <video src="test/multimedia/videoTest.mp4"
                 preload="auto" id="vid" response-type="arraybuffer" loop
-                crossorigin="anonymous" webkit-playsinline autoplay playsinline> <!-- Sacando el muted se reproduce el audio -->
+                crossOrigin="anonymous" webkit-playsinline autoplay playsinline> <!-- Sacando el muted se reproduce el audio -->
             </video>
         </a-assets>
 
         <a-nft
             videohandler
-            type='nft' url='https://github.com/llauu/ARtest/tree/master/image_descriptors/definitivo'
+            type='nft' url="test/image_descriptors/definitivo"
             smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
         >
             <a-video
