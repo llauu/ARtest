@@ -1,6 +1,10 @@
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 
 <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/loader.css">
 <script>
     window.onload = function() {
         AFRAME.registerComponent('videohandler', {
@@ -22,30 +26,11 @@
     };
 </script>
 
-<style>
-    .arjs-loader {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .arjs-loader div {
-        text-align: center;
-        font-size: 1.25em;
-        color: white;
-    }
-</style>
 
 <body style='margin : 0px; overflow: hidden;'>
     <div class="arjs-loader">
-        <div>Loading the AR by llau</div>
+        <div class="loader"></div>
     </div>
     <a-scene
         vr-mode-ui="enabled: false;"
@@ -53,22 +38,22 @@
         embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
         <a-assets>
-            <video src="videoTest.mp4"
+            <video src="../multimedia/videoTest.mp4"
                 preload="auto" id="vid" response-type="arraybuffer" loop
-                crossOrigin="anonymous" webkit-playsinline autoplay muted playsinline>
+                crossorigin webkit-playsinline autoplay playsinline> <!-- Sacando el muted se reproduce el audio -->
             </video>
         </a-assets>
 
         <a-nft
             videohandler
-            type='nft' url='definitivo'
+            type='nft' url='../image_descriptors/definitivo'
             smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5"
         >
             <a-video
                 src="#vid"
-                position='130 0 40'
-                width='410'
-                height='250'
+                position='130 0 -200'
+                width='280'
+                height='170'
                 rotation= '270 0 0'
                 >
             </a-video>
