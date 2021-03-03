@@ -1,13 +1,16 @@
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<!DOCTYPE html>
+
+<script
+    src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 
 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles/loader.css">
+<link rel="stylesheet" href="loader.css">
 <script>
-    // Funcion principal para q cuando encuentre el marcador inicie el video, y se pause cuando lo pierda
-    window.onload = function() {
+
+    window.onload = function () {
         AFRAME.registerComponent('videohandler', {
             init: function () {
                 var marker = this.el;
@@ -17,25 +20,23 @@
                 marker.addEventListener('markerFound', function () {
                     this.vid.play();
                 }.bind(this));
-    
-		marker.addEventListener('markerLost', function() {
-			this.vid.pause();
-			this.vid.currentTime = 0;
-      this.vid.muted=true;
-		}.bind(this));
+
+                marker.addEventListener('markerLost', function () {
+                    this.vid.pause();
+                    this.vid.currentTime = 0;
+                    this.vid.muted = true;
+                }.bind(this));
             }
         });
     };
-    
 
-    // Funcion para activar el audio cuando tocas la pantalla
     window.addEventListener('click', function () {
-      var v = document.querySelector('#vid');
-      v.muted=false;
+        var v = document.querySelector('#vid');
+        v.muted = false;
     });
-  
-  
-    // Boton para activar el audio
+
+
+    // Button to activate the sound
     /*document.querySelector("button").addEventListener("click", function(){
       console.log("Sound activated");
       var v = document.querySelector("#vid").muted = false;
@@ -46,36 +47,29 @@
 
 
 <body style="margin : 0px; overflow: hidden;">
+
+
     <div class="arjs-loader">
         <div class="loader"></div>
     </div>
-    <a-scene
-        vr-mode-ui="enabled: false;"
-        renderer="antialias: true; alpha: true; precision: mediump;"
-        embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+    <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
         <a-assets>
-            <video src="https://cdn.glitch.com/ac82e5a6-832b-4a36-9e6f-866c90816fa9%2FvideoTest.mp4?v=1614389002922" 
-                preload="auto" id="vid" response-type="arraybuffer" loop
-                crossorigin="anonymous" webkit-playsinline autoplay controls muted="true" playsinline>
+            <video src="https://cdn.glitch.com/ac82e5a6-832b-4a36-9e6f-866c90816fa9%2FvideoTest.mp4?v=1614389002922"
+                preload="auto" id="vid" response-type="arraybuffer" loop crossorigin="anonymous" webkit-playsinline
+                autoplay controls muted="true" playsinline>
+                <!-- Sacando el muted se reproduce el audio -->
             </video>
         </a-assets>
-      
-        <a-nft
-            videohandler
-            type="nft" url="https://cdn.glitch.com/ac82e5a6-832b-4a36-9e6f-866c90816fa9%2Fdefinitivo"
-            smooth="true" smoothcount="10" smoothtolerance="0.01" smooththreshold="5"
-        >
-            <a-video
-                src="#vid"
-                position="35 0.1 -30"
-                width="220"
-                height="130"
-                rotation= "270 0 0"
-                >
+
+        <a-nft videohandler type="nft" url="https://cdn.glitch.com/ac82e5a6-832b-4a36-9e6f-866c90816fa9%2Ftest1"
+            smooth="true" smoothcount="10" smoothtolerance="0.01" smooththreshold="5">
+            <a-video src="#vid" position="67 -1 -120" width="143" height="105" rotation="270 0.1 0.1">
+                <!-- position= "horizontal=(Mientras mas tiene mas hacia la derecha se dirige.)  distanciacamaramarker vertical=(Mientras menos tiene mas hacia abajo va)" -->
             </a-video>
         </a-nft>
-    
-		<a-entity camera></a-entity>
-	</a-scene>
+
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
